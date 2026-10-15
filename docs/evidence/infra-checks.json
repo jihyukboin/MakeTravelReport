@@ -1,0 +1,31 @@
+{
+  "verified_at": "2026-10-15T05:20:52.895073+00:00",
+  "checks": [
+    {
+      "command": "python3 -m py_compile infra/scripts/normalize.py infra/scripts/collect.py infra/scripts/load_mysql.py infra/scripts/optimize_mysql.py scripts/capture_demo.py scripts/verify_chat_saving.py",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": "docker compose -f infra/compose.yaml config --quiet",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": "python3 infra/scripts/load_mysql.py --verify-only",
+      "exit_code": 0,
+      "output": "{\n  \"status\": \"verified\",\n  \"row_counts\": {\n    \"regions\": 16,\n    \"districts\": 269,\n    \"categories\": 315,\n    \"content_types\": 8,\n    \"attractions\": 49614,\n    \"attraction_images\": 41884,\n    \"photos\": 102004,\n    \"keywords\": 22179,\n    \"photo_keywords\": 626288,\n    \"charging_operators\": 144,\n    \"charging_stations\": 101091,\n    \"chargers\": 527433,\n    \"charger_status\": 527433,\n    \"astronomy_locations\": 205,\n    \"sun_times\": 6150\n  },\n  \"foreign_keys_checked\": 13,\n  \"orphan_rows\": 0\n}\n"
+    },
+    {
+      "command": "python3 infra/scripts/optimize_mysql.py",
+      "exit_code": 0,
+      "output": "{\n  \"created\": [],\n  \"required_indexes\": 6\n}\n"
+    },
+    {
+      "command": "Temporary SQLite schema + shared indexes + MySQL export smoke check",
+      "exit_code": 0,
+      "indexes": 6
+    }
+  ],
+  "recommendation_explain": "1\tSIMPLE\tattractions\tNULL\trange\tcontent_type_id,idx_attractions_latitude_longitude,idx_attractions_category_code_content_type_id_latitude_longitude\tidx_attractions_category_code_content_type_id_latitude_longitude\t103\tNULL\t1380\t3.10\tUsing index condition\n"
+}

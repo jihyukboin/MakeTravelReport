@@ -11,6 +11,11 @@ import sqlite3
 from collect import ROOT, DATA, parse
 
 TABLES = ['regions','districts','categories','content_types','attractions','attraction_images','photos','keywords','photo_keywords','charging_operators','charging_stations','chargers','charger_status','astronomy_locations','sun_times']
+INDEXES = [('attractions','region_code, district_code'),
+           ('attractions','latitude, longitude'),
+           ('attractions','category_code, content_type_id, latitude, longitude'),
+           ('charging_stations','latitude, longitude'),
+           ('photo_keywords','keyword'),('sun_times','observation_date')]
 
 def rows(name):
     for p in sorted((DATA / 'raw' / name).rglob('*.gz')):
@@ -152,7 +157,7 @@ def build():
         manifest=json.loads((DATA/'raw'/dataset/'manifest.json').read_text())
         if counts[table] != manifest['downloaded']:
             raise RuntimeError(f'{dataset}: normalization count mismatch')
-    for t, cols in [('attractions','region_code, district_code'),('attractions','latitude, longitude'),('charging_stations','latitude, longitude'),('photo_keywords','keyword'),('sun_times','observation_date')]:
+    for t, cols in INDEXES:
         db.execute(f'CREATE INDEX idx_{t}_{cols.replace(", ","_")} ON {t} ({cols})')
     db.commit()
     export(db, output)
@@ -187,7 +192,7 @@ def export(db, output):
                         sql.write(f'INSERT INTO `{t}` VALUES '+','.join(batch)+';\n');batch=[]
                 if batch:
                     sql.write(f'INSERT INTO `{t}` VALUES '+','.join(batch)+';\n')
-        for t,cols in [('attractions','region_code, district_code'),('attractions','latitude, longitude'),('charging_stations','latitude, longitude'),('photo_keywords','keyword'),('sun_times','observation_date')]:
+        for t,cols in INDEXES:
             sql.write(f'CREATE INDEX idx_{t}_{cols.replace(", ","_")} ON {t} ({cols});\n')
 
 if __name__=='__main__':

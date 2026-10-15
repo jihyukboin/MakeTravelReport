@@ -1,0 +1,7 @@
+{
+  "in_flight_same_state_save_count": 1,
+  "retry_requests_including_failure": 2,
+  "browser_errors": [],
+  "fault_injection": "One HTTP 503 only in this regression check; walkthrough video has no mocked API responses",
+  "result": "passed"
+}

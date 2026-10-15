@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Search, X } from "lucide-react";
+import { Search, X } from "lucide-react";
 import Script from "next/script";
 import { useRef, useState } from "react";
 
@@ -11,6 +11,8 @@ type PostcodeAddress = {
   userSelectedType: "R" | "J";
   zonecode: string;
   buildingName: string;
+  sido: string;
+  sigungu: string;
 };
 
 type PostcodeApi = {
@@ -21,7 +23,9 @@ type PostcodeApi = {
   }) => { embed: (element: HTMLElement, options: { q: string }) => void };
 };
 
-export function DeparturePicker({ onConfirm }: { onConfirm: (address: string) => void }) {
+export type Departure = { address: string; sido: string; sigungu: string };
+
+export function DeparturePicker({ onConfirm }: { onConfirm: (departure: Departure) => void }) {
   const [scriptReady, setScriptReady] = useState(false);
   const [error, setError] = useState("");
   const [isSearching, setIsSearching] = useState(false);
@@ -75,7 +79,7 @@ export function DeparturePicker({ onConfirm }: { onConfirm: (address: string) =>
         onClick={searchAddress}
         className="flex min-h-14 w-full cursor-pointer items-center justify-between gap-2 rounded-2xl border border-[#d1d5db] px-3.5 text-left text-base text-[#9ca3af] hover:border-[#52a8ec] focus-visible:border-[#52a8ec] focus-visible:ring-2 focus-visible:ring-[#52a8ec]/15 focus-visible:outline-none disabled:cursor-wait"
       >
-        <span>{scriptReady ? "도로명, 건물명 또는 지번" : error ? "연결 실패" : "로딩 중"}</span>
+        {scriptReady ? "도로명, 건물명 또는 지번" : error ? "연결 실패" : "로딩 중"}
         <Search size={19} className="shrink-0 text-[#6b7280]" aria-hidden="true" />
       </button>
       <p className="mt-2 text-xs leading-5 text-[#9ca3af]">예: 판교역로 166, 서울시청</p>
@@ -97,38 +101,29 @@ export function DeparturePicker({ onConfirm }: { onConfirm: (address: string) =>
         <div ref={searchContainerRef} className="h-[min(450px,65dvh)] min-h-[300px] w-full" />
       </div>
 
-      <form onSubmit={(event) => {
+      {selected && <form onSubmit={(event) => {
         event.preventDefault();
-        if (selectedAddress) onConfirm([selectedAddress, detail.trim()].filter(Boolean).join(" "));
-      }} className="mt-3">
-        <div aria-live="polite">
-          {selected ? (
-            <div className="rounded-2xl bg-[#f3f7ff] p-4">
-              <p className="mb-2 flex items-center gap-1.5 text-xs font-semibold text-[#3182f6]"><Check size={14} aria-hidden="true" />선택한 출발지 · {selected.zonecode}</p>
-              <p className="text-base leading-6 font-semibold break-keep text-[#333d4b]">{selectedAddress}</p>
-              {selected.buildingName && <p className="mt-1 text-sm text-[#6b7280]">{selected.buildingName}</p>}
-            </div>
-          ) : null}
-        </div>
-        {selected && <>
-          <label htmlFor="departure-detail" className="mt-3 mb-2 block text-sm text-[#6b7280]">상세주소 (선택)</label>
+        if (selectedAddress) onConfirm({ address: [selectedAddress, detail.trim()].filter(Boolean).join(" "), sido: selected.sido, sigungu: selected.sigungu });
+      }} className="mt-4 rounded-[16px] bg-[#f2f4f6] p-6 sm:p-8">
+          <p className="text-xl leading-[1.35] font-bold tracking-[-0.04em] break-keep text-[#1d1d1f]">{selectedAddress}</p>
+          {selected.buildingName && <p className="mt-2 text-[15px] leading-6 text-[#4e5968]">{selected.buildingName}</p>}
+          <label htmlFor="departure-detail" className="mt-6 mb-2 block text-sm text-[#4e5968]">상세주소 (선택)</label>
           <input
             ref={detailRef}
             id="departure-detail"
             value={detail}
             onChange={(event) => setDetail(event.target.value)}
             placeholder="동·호수, 출발할 장소 등"
-            className="min-h-11 w-full rounded-xl border border-[#e5e7eb] px-3 text-base outline-none placeholder:text-[#9ca3af] focus:border-[#52a8ec]"
+            className="min-h-12 w-full rounded-xl border border-[#d2d2d7] bg-white px-3.5 text-base text-[#1d1d1f] outline-none placeholder:text-[#86868b] focus:border-[#0071e3] focus:ring-2 focus:ring-[#0071e3]/20"
           />
           <button
             type="submit"
             disabled={isSearching}
-            className="mt-3 inline-flex min-h-10 cursor-pointer items-center justify-center gap-1.5 rounded-xl bg-[#111827] px-4 text-sm font-semibold text-white hover:bg-[#374151] disabled:cursor-default disabled:bg-[#e5e7eb] disabled:text-[#9ca3af]"
+            className="mt-6 inline-flex min-h-11 cursor-pointer items-center justify-center rounded-full bg-[#0071e3] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-[#0077ed] active:bg-[#006edb] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0071e3] disabled:cursor-default disabled:bg-[#d2d2d7] disabled:text-[#86868b]"
           >
-            <Check size={16} aria-hidden="true" />출발지로 설정
+            출발지로 설정
           </button>
-        </>}
-      </form>
+      </form>}
     </div>
   );
 }

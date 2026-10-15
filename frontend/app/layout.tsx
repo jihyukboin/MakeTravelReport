@@ -10,8 +10,8 @@ const pretendardGov = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "알고리즘",
-  description: "알고리즘을 학습하고 문제 해결 능력을 키우는 공간",
+  title: "MakeTravelReport · EnjoyTrip",
+  description: "여행 취향과 전기차 배터리, 가까운 충전소를 고려해 나만의 여행 계획서를 만드세요.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

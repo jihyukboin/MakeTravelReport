@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="480" viewBox="0 0 1440 480" role="img" aria-labelledby="title desc">
+<title id="title">MakeTravelReport</title><desc id="desc">취향에서 출발해 충전의 여유까지. 공공데이터와 두 알고리즘으로 만드는 전기차 여행 계획서.</desc>
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b1631"/><stop offset=".55" stop-color="#153f4b"/><stop offset="1" stop-color="#235c50"/></linearGradient>
+ <linearGradient id="road" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#75dbe0"/><stop offset="1" stop-color="#efcf8b"/></linearGradient>
+ <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#fff" stroke-opacity=".04"/></pattern>
+</defs>
+<rect width="1440" height="480" rx="28" fill="url(#bg)"/><rect width="1440" height="480" rx="28" fill="url(#grid)"/>
+<circle cx="1360" cy="40" r="240" fill="#81b6a3" opacity=".055"/><circle cx="1340" cy="40" r="180" fill="none" stroke="#fff" opacity=".08"/>
+<g font-family="Pretendard GOV Variable, Pretendard, sans-serif">
+ <rect x="64" y="48" width="278" height="30" rx="15" fill="#ffffff" fill-opacity=".09" stroke="#fff" stroke-opacity=".15"/>
+ <text x="83" y="68" font-size="12" fill="#b9e4dc" letter-spacing="2">ENJOYTRIP / ALGORITHM PJT 04</text>
+ <text x="64" y="163" font-size="64" font-weight="700" letter-spacing="-3" fill="#fff">MakeTravelReport</text>
+ <text x="67" y="211" font-size="25" font-weight="500" fill="#c6dcd7">취향에서 출발해, 충전의 여유까지.</text>
+ <text x="67" y="250" font-size="16" fill="#9bbab7">공공데이터와 알고리즘으로 완성하는 나만의 전기차 여행 계획서</text>
+ <path d="M880 231C946 231 934 128 1010 128S1075 286 1143 286 1220 166 1308 166" fill="none" stroke="#fff" stroke-opacity=".10" stroke-width="22"/>
+ <path d="M880 231C946 231 934 128 1010 128S1075 286 1143 286 1220 166 1308 166" fill="none" stroke="url(#road)" stroke-width="3" stroke-dasharray="8 6"/>
+ <g fill="#143d48" stroke="#b8e3d4" stroke-width="3"><circle cx="880" cy="231" r="9"/><circle cx="1010" cy="128" r="9"/><circle cx="1143" cy="286" r="9"/><circle cx="1308" cy="166" r="9"/></g>
+ <circle cx="1308" cy="166" r="22" fill="#efcf8b" fill-opacity=".12"/>
+ <text x="850" y="271" font-size="14" fill="#bdd5d1">출발지</text><text x="983" y="100" font-size="14" fill="#bdd5d1">나의 취향</text><text x="1114" y="325" font-size="14" fill="#bdd5d1">여행지</text><text x="1280" y="135" font-size="14" fill="#efcf8b">충전소</text>
+ <path d="M64 330H1376" stroke="#fff" stroke-opacity=".13"/>
+ <g font-size="12" fill="#98bdb6" letter-spacing="1.5"><text x="68" y="368">PUBLIC ATTRACTIONS</text><text x="397" y="368">EV CHARGERS</text><text x="727" y="368">ALGORITHMS</text><text x="1057" y="368">YOUR TRIP</text></g>
+ <g font-size="34" font-weight="700" fill="#fff"><text x="67" y="416">49,614</text><text x="397" y="416">527,433</text><text x="727" y="416">Grid + Heap</text><text x="1057" y="416">PDF Report</text></g>
+ <g stroke="#fff" stroke-opacity=".10"><path d="M360 357V428"/><path d="M690 357V428"/><path d="M1020 357V428"/></g>
+</g></svg>

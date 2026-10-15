@@ -1,0 +1,31 @@
+{
+  "walkthrough.webm": {
+    "frames": 1193,
+    "seconds": 47.72,
+    "bytes": 6127258,
+    "fully_decoded": true
+  },
+  "walkthrough.mp4": {
+    "frames": 1193,
+    "seconds": 47.72,
+    "bytes": 1038062,
+    "fully_decoded": true
+  },
+  "preview_gif": {
+    "frames": 117,
+    "dimensions": [
+      800,
+      556
+    ]
+  },
+  "pdf": {
+    "pages": 6,
+    "contains_attraction_name": true
+  },
+  "readme_links": {
+    "local_targets_checked": 45,
+    "missing": [],
+    "all_17_capture_steps_embedded": true
+  },
+  "verified_at": "2026-10-15T05:21:19.793704+00:00"
+}

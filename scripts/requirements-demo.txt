@@ -1,0 +1,5 @@
+# Optional documentation capture tools; not application runtime dependencies.
+playwright>=1.50,<2
+Pillow>=11,<13
+pypdf>=6,<7
+imageio-ffmpeg>=0.6,<1

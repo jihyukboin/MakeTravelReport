@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Load this project's generated dataset and verify MySQL counts and all FKs."""
 import gzip
+import argparse
 import json
 import subprocess
 from collect import ROOT, DATA
@@ -15,16 +16,26 @@ def query(sql):
     return result.stdout
 
 def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--verify-only',action='store_true',help='Check existing data without replacing any tables')
+    args=parser.parse_args()
     counts=json.loads((DATA/'normalized'/'counts.json').read_text())
     # Only the tables named in schema.sql in this project's database are replaced.
-    process=subprocess.Popen(MYSQL,stdin=subprocess.PIPE,stderr=subprocess.PIPE)
-    with gzip.open(DATA/'normalized'/'enjoytrip.mysql.sql.gz','rb') as f:
-        while chunk:=f.read(1024*1024):
-            process.stdin.write(chunk)
-    process.stdin.close()
-    error=process.stderr.read().decode()
-    if process.wait():
-        raise RuntimeError(error[:2000])
+    if not args.verify_only:
+        # A real temporary file prevents stderr from blocking a large streamed import.
+        import tempfile
+        with tempfile.TemporaryFile() as errors:
+            process=subprocess.Popen(MYSQL,stdin=subprocess.PIPE,stderr=errors)
+            try:
+                with gzip.open(DATA/'normalized'/'enjoytrip.mysql.sql.gz','rb') as f:
+                    while chunk:=f.read(1024*1024):
+                        process.stdin.write(chunk)
+            finally:
+                process.stdin.close()
+                code=process.wait()
+            if code:
+                errors.seek(0)
+                raise RuntimeError(errors.read(2000).decode(errors='replace'))
     actual={}
     for table,expected in counts.items():
         actual[table]=int(query(f'SELECT COUNT(*) FROM `{table}`;').strip())

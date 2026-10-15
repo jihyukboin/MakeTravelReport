@@ -1,0 +1,16 @@
+{
+  "dataset": "100000 prebuilt synthetic destinations; candidate construction excluded",
+  "seed": 20261015,
+  "candidates": 100000,
+  "retained_results": 1,
+  "warmups": 2,
+  "measured_runs": 5,
+  "sort_median_ms": 29.299,
+  "heap_median_ms": 3.028,
+  "speedup": 9.67,
+  "sort_thread_allocated_bytes": 861600,
+  "heap_thread_allocated_bytes": 192,
+  "memory_method": "ThreadMXBean current-thread allocation; not peak retained heap or RSS",
+  "exact_match": true,
+  "java": "21.0.12.1"
+}

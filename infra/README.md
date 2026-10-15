@@ -77,7 +77,7 @@ spring.datasource.username=${MYSQL_USER}
 spring.datasource.password=${MYSQL_PASSWORD}
 ```
 
-Spring 프로세스에 환경변수를 전달해야 하며 Spring이 `infra/.env`를 자동으로 읽지는 않는다. Docker 볼륨 `enjoytrip_mysql_data`에 DB가 유지된다.
+`backend/`에서 실행하면 `application.properties`의 `spring.config.import`가 `../infra/.env`를 읽는다. 다른 작업 디렉터리에서 실행할 때는 환경변수를 전달하거나 설정 경로를 지정한다. Docker 볼륨 `enjoytrip_mysql_data`에 DB가 유지된다.
 
 ## 데이터 출처
 
@@ -124,3 +124,16 @@ LIMIT 20;
 ```
 
 세종은 관광 API의 지역·시군구 코드가 `36110`으로 내려오므로 다른 지역처럼 2자리로 자르지 않는다. 충전기 층수는 `지하 1층` 같은 원본 표현이 있어 문자열로 보존한다.
+
+## 데이터 보존 검증과 인덱스 최적화
+
+이미 적재된 DB를 검사할 때는 다음 명령을 사용한다. `--verify-only`는 기존 테이블을 교체하지 않고 행 수와 외래키만 검사한다.
+
+```bash
+python3 infra/scripts/load_mysql.py --verify-only
+python3 infra/scripts/optimize_mysql.py
+```
+
+`optimize_mysql.py`는 정규화 스크립트와 같은 인덱스 목록을 사용한다. 없는 인덱스만 추가하므로 반복 실행할 수 있으며 관광지와 채팅 데이터는 유지한다. 관광 분류·콘텐츠 유형·위경도 복합 인덱스가 추천 조회를 지원한다. 대량 운영 데이터에서는 인덱스 생성 작업의 부하와 잠금을 고려해 실행한다.
+
+Compose는 필수 DB 설정이 비어 있으면 즉시 오류를 내고, DB 포트를 로컬 인터페이스에만 노출한다. 컨테이너 로그는 10MB씩 최대 3개로 회전한다. 설정 변경은 사용자가 Compose를 다시 적용한 뒤 반영된다.

@@ -1,6 +1,7 @@
 # Local secrets
 .env
 .env.*
+.envrc
 !.env.example
 !.env.sample
 *.pem
@@ -15,6 +16,14 @@ dist/
 coverage/
 *.tsbuildinfo
 
+# Python environments and tool caches
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+
 # Local tools, logs and OS metadata
 .codex/
 .idea/
@@ -22,9 +31,16 @@ coverage/
 __pycache__/
 *.pyc
 *.log
+*.tmp
+*.swp
+*.swo
+*~
 .DS_Store
 Thumbs.db
 *:Zone.Identifier
 
 # Local project handout
 /자바전공_enjoytrip_16_04_알고리즘.pdf
+
+# README screenshots, demo videos and sample PDFs in docs/ are committed.
+# Temporary browser recordings are excluded by docs/media/.gitignore.

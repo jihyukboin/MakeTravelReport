@@ -1,0 +1,17 @@
+{
+  "dataset": "synthetic uniform Korea bounds; not live request latency",
+  "seed": 42,
+  "chargers": 10000,
+  "queries": 1000,
+  "radius_km": 5,
+  "warmups": 2,
+  "measured_runs": 5,
+  "baseline_median_ms": 541.370,
+  "grid_with_build_median_ms": 7.372,
+  "speedup": 73.43,
+  "exact_matches": 1000,
+  "baseline_thread_allocated_bytes": 4248,
+  "grid_thread_allocated_bytes": 3822496,
+  "memory_method": "ThreadMXBean current-thread allocation per run; not peak retained heap or RSS",
+  "java": "21.0.12.1"
+}

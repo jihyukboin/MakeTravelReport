@@ -1,0 +1,25 @@
+{
+  "verified_at": "2026-10-15T05:20:51.698089+00:00",
+  "checks": [
+    {
+      "command": "npm run lint",
+      "exit_code": 0,
+      "output": "\n> frontend@0.1.0 lint\n> eslint\n\n"
+    },
+    {
+      "command": "npx next typegen",
+      "exit_code": 0,
+      "output": "Generating route types...\n✓ Types generated successfully\n"
+    },
+    {
+      "command": "npx tsc --noEmit",
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "command": "npm run build",
+      "exit_code": 0,
+      "output": "\n> frontend@0.1.0 build\n> next build\n\n▲ Next.js 16.4.1 (Turbopack)\n- Environments: .env.local\n✓ Running next.config.ts took 29ms\n- Cache Components enabled\n- Partial Prefetching enabled\n- Experiments (use with caution):\n  ⨯ serverComponentsHmrCache\n  ⨯ turbopackFileSystemCacheForDev\n\n  Creating an optimized production build ...\n✓ Compiled successfully in 1335ms\n  Running TypeScript ...\n  Finished TypeScript in 1515ms ...\n  Collecting page data using 10 workers ...\n  Generating static pages using 10 workers (0/7) ...\n  Generating static pages using 10 workers (1/7) \n  Generating static pages using 10 workers (3/7) \n  Generating static pages using 10 workers (5/7) \n✓ Generating static pages using 10 workers (7/7) in 744ms\n  Finalizing page optimization ...\n\nRoute (app)\n┌ ◐ /\n├ ○ /_not-found\n├ ƒ /api/[...path]\n├ ƒ /api/recommendations\n├   /c/[chatId]\n│ └ ◐ /c/[chatId]\n├   /c/[chatId]/result\n│ └ ◐ /c/[chatId]/result\n└ ƒ /c/[chatId]/result/pdf\n\n\n○  (Static)             prerendered as static content\n◐  (Partial Prerender)  prerendered as static HTML with dynamic server-streamed content\nƒ  (Dynamic)            server-rendered on demand\n\n"
+    }
+  ]
+}

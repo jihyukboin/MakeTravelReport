@@ -1,0 +1,198 @@
+{
+  "captured_at": "2026-10-15T05:13:17.187418+00:00",
+  "base_url": "http://localhost:3003",
+  "mocked_api_responses": false,
+  "viewport": "1440x1000",
+  "chat_id": "b194e00f-2f0d-41b5-bffb-8c5a4fb96bc1",
+  "trip_date": "2026-10-15",
+  "recommendation": {
+    "origin": {
+      "label": "서울특별시 중구 관광지 중심",
+      "point": {
+        "latitude": 37.56322514606622,
+        "longitude": 126.99152758673267
+      },
+      "approximate": true
+    },
+    "vehicle": {
+      "id": "g80-ev",
+      "name": "Electrified G80 · 87.2 kWh",
+      "rangeKm": 427,
+      "connector": "DC 콤보"
+    },
+    "date": "2026-10-15",
+    "batteryPercent": 80,
+    "reservePercent": 20,
+    "estimatedReachKm": 256.2,
+    "matchedCount": 539,
+    "destinations": [
+      {
+        "attraction": {
+          "id": "822861",
+          "title": "한강",
+          "address": "서울특별시 성동구 강변북로 257",
+          "category": "NA020100",
+          "point": {
+            "latitude": 37.5389280323,
+            "longitude": 127.0416216085
+          }
+        },
+        "distanceKm": 5.2,
+        "estimatedRoadKm": 6.7,
+        "charger": {
+          "id": "SE000151",
+          "name": "서울숲공원주차장",
+          "address": "서울특별시 성동구 왕십리로 27",
+          "hours": "24시간 이용가능",
+          "point": {
+            "latitude": 37.541626393,
+            "longitude": 127.04302905
+          },
+          "available": 2,
+          "charging": 0,
+          "outputKw": 100,
+          "statusUpdatedAt": "2026-10-15 10:30:44"
+        },
+        "chargerDistanceKm": 0.3,
+        "sun": {
+          "location": "서울",
+          "date": "2026-10-15",
+          "moment": "sunset",
+          "time": "17:56:00",
+          "distanceKm": 6
+        },
+        "score": 6.5
+      }
+    ]
+  },
+  "pdf_pages": 6,
+  "browser_errors": [],
+  "api_responses": [
+    {
+      "path": "/api/chats/{id}",
+      "status": 200
+    },
+    {
+      "path": "/api/chats/{id}",
+      "status": 200
+    },
+    {
+      "path": "/api/chats/{id}",
+      "status": 200
+    },
+    {
+      "path": "/api/chats/{id}",
+      "status": 200
+    },
+    {
+      "path": "/api/chats/{id}",
+      "status": 200
+    },
+    {
+      "path": "/api/chats/{id}",
+      "status": 200
+    },
+    {
+      "path": "/api/chats/{id}",
+      "status": 200
+    },
+    {
+      "path": "/api/recommendations",
+      "status": 200
+    },
+    {
+      "path": "/api/chats/{id}",
+      "status": 200
+    }
+  ],
+  "checkpoints": [
+    {
+      "step": "01-home",
+      "label": "홈 화면",
+      "seconds": 3.0
+    },
+    {
+      "step": "02-login",
+      "label": "데모 계정 로그인",
+      "seconds": 5.5
+    },
+    {
+      "step": "03-address-search",
+      "label": "실제 카카오 우편번호 검색",
+      "seconds": 11.4
+    },
+    {
+      "step": "04-departure",
+      "label": "서울시청 출발지 선택",
+      "seconds": 13.6
+    },
+    {
+      "step": "05-vehicle",
+      "label": "차량·배터리 80%·여행 날짜 선택",
+      "seconds": 16.3
+    },
+    {
+      "step": "06-atmosphere",
+      "label": "자연 속에서 쉬어가는 분위기 선택",
+      "seconds": 18.6
+    },
+    {
+      "step": "07-preference",
+      "label": "하천·해양 풍경 취향 선택",
+      "seconds": 20.8
+    },
+    {
+      "step": "08-moment",
+      "label": "일몰 선택",
+      "seconds": 22.7
+    },
+    {
+      "step": "09-recommendation",
+      "label": "실제 MySQL 기반 여행지·충전소 추천",
+      "seconds": 25.4
+    },
+    {
+      "step": "10-charger",
+      "label": "충전소·일몰 시각·계획서 연결",
+      "seconds": 27.3
+    },
+    {
+      "step": "11-restored-chat",
+      "label": "새로고침 후 대화·추천 결과 복원",
+      "seconds": 32.2
+    },
+    {
+      "step": "12-report-cover",
+      "label": "서버에서 렌더링한 여행 계획서",
+      "seconds": 35.7
+    },
+    {
+      "step": "13-report-vehicle",
+      "label": "차량 정보와 여행 동선",
+      "seconds": 37.5
+    },
+    {
+      "step": "14-report-routes",
+      "label": "실제 TMAP 도로 경로·지도·안내",
+      "seconds": 39.4
+    },
+    {
+      "step": "15-report-charging",
+      "label": "충전소와 일몰 계획",
+      "seconds": 41.3
+    },
+    {
+      "step": "16-pdf-download",
+      "label": "실제 여행 계획서 PDF 다운로드 완료",
+      "seconds": 44.0
+    },
+    {
+      "step": "17-logout",
+      "label": "로그아웃 후 홈 화면 복귀",
+      "seconds": 47.1
+    }
+  ],
+  "report_url": "http://localhost:3003/c/b194e00f-2f0d-41b5-bffb-8c5a4fb96bc1/result",
+  "route_map_images": 2,
+  "unavailable_route_legs": 0
+}
